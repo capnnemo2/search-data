@@ -18,10 +18,8 @@ export default class App extends React.Component {
   searchData = (e) => {
     let names = this.state.names;
     const inputText = e.toUpperCase();
-    console.log(names, inputText);
 
     names = names.filter((name) => name.toUpperCase().includes(inputText));
-    console.log("filtered: ", names);
 
     this.setState({
       nameList: names,
@@ -31,7 +29,6 @@ export default class App extends React.Component {
   render() {
     const names = this.state.names;
     const nameList = this.state.nameList;
-    console.log(nameList);
     return (
       <div className="App">
         <header className="App-header">
@@ -47,7 +44,15 @@ export default class App extends React.Component {
             ></input>
           </label>
 
-          <ul className="data-list">
+          <ul
+            className="data-list"
+            style={{
+              listStyleType: "none",
+              height: "200px",
+              width: "120px",
+              overflow: "auto",
+            }}
+          >
             {nameList.length === 0
               ? this.renderDataList(names)
               : this.renderDataList(nameList)}
